@@ -337,7 +337,7 @@ defmodule DBConnection.Connection do
   defp pool_update(state, %{pool: pool, tag: tag, mod: mod} = s) do
     case Holder.update(pool, tag, mod, state) do
       {:ok, ref} ->
-        {:noreply, %{s | client: {ref, :pool}, state: state}, :hibernate}
+        {:noreply, %{s | client: {ref, :pool}, state: state}}
 
       :error ->
         {:stop, {:shutdown, :no_more_pool}, s}
